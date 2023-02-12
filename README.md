@@ -28,7 +28,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [Solution URL](https://www.frontendmentor.io/solutions/advice-generator-app-using-basic-html-css-and-js-UTDlB5j95_)
-- Live Site URL: [Live site URL](https://github.com/alencarftc/fm-advice-generator-app)
+- Live Site URL: [Live site URL](https://alencarftc.github.io/fm-advice-generator-app)
 
 
 ## Built with
