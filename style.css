@@ -20,14 +20,6 @@ html {
   font-weight: 800;
 }
 
-h2 {
-  color: var(--light-cyan);
-}
-
-h5 {
-  color: var(--neon-green);
-}
-
 #app {
   width: 100vw;
   height: 100vh;
@@ -52,6 +44,7 @@ h5 {
   text-transform: uppercase;
   letter-spacing: 4px;
   margin: 16px 16px 0px;
+  color: var(--neon-green);
 }
 
 .modal-advice-text {
@@ -60,6 +53,7 @@ h5 {
   padding: 24px;
   width: 90%;
   margin: 0 auto;
+  color: var(--light-cyan);
 }
 .modal-divider {
   margin: 8px 0px 32px;
