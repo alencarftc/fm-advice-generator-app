@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <title>Frontend Mentor | Advice generator app</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <main id="app">
+      <div class="modal">
+        <h5 id="advice-id" class="modal-advice-id"></h5>
+        <h2 id="advice-text" class="modal-advice-text">Loading...</h2>
+        <img
+          class="modal-divider"
+          src="./images/pattern-divider-desktop.svg"
+          srcset="
+            ./images/pattern-divider-mobile.svg   375w,
+            ./images/pattern-divider-desktop.svg 1440w
+          "
+          sizes="(max-width: 375px) 375px, 1440px"
+          alt="Divider"
+        />
+        <button
+          onclick="adviceController.update()"
+          class="modal-advice-generator"
+        >
+          <img src="./images/icon-dice.svg" alt="Dice Icon" />
+        </button>
+      </div>
+    </main>
+
+    <script>
+      class AdviceController {
+        API_URL = "https://api.adviceslip.com/advice";
+
+        constructor() {
+          const $ = document.querySelector.bind(document);
+
+          this.adviceIdEl = $("#advice-id");
+          this.adviceTextEl = $("#advice-text");
+        }
+
+        async random() {
+          let response = {};
+          try {
+            const {
+              slip: { id, advice },
+            } = await (await fetch(this.API_URL)).json();
+
+            response = { id, advice };
+          } catch (e) {
+            response = {
+              id: NaN,
+              advice: "Not expected response. Try again later.",
+            };
+          } finally {
+            return response;
+          }
+        }
+
+        async update() {
+          const { id, advice } = await this.random();
+          this.adviceIdEl.innerHTML = `Advice #${id}`;
+          this.adviceTextEl.innerHTML = `“${advice}”`;
+        }
+      }
+
+      const adviceController = new AdviceController();
+      adviceController.update();
+    </script>
+  </body>
+</html>
